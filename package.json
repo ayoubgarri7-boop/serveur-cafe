@@ -1,0 +1,9 @@
+{
+  "name": "serveur-cafe",
+  "version": "1.0.0",
+  "description": "Serveur pour le site Ayoub Coffee",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
