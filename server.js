@@ -18,38 +18,13 @@ async function doSignup() {
         return;
     }
 
-    accounts[user] = { email: email, password: pass };
-    saveAccounts(accounts);
-
-    // NOUVEAU : on envoie l'email de bienvenue via le serveur
-    try {
-        await fetch('/signup', {
+   
+        // Envoyer l'email de bienvenue via le serveur
+        fetch('/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, email: email })
         });
-    } catch (e) {
-        console.log('Email non envoyé:', e);
-    }
-
-    loginUser(user, email);
-    closeLogin();
-    clearForms();
-}const http = require('http');
-const fs = require('fs');
-
-const server = http.createServer((req, res) => {
-    fs.readFile('index.html', (err, data) => {
-        if (err) {
-            res.writeHead(500);
-            res.end('Erreur : index.html introuvable');
-            return;
-        }
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end(data);
-    });
-});
-
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log('Serveur démarré sur le port ' + PORT);
