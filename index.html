@@ -1725,6 +1725,13 @@
             // Save the new account
             accounts[user] = { email: email, password: pass };
             saveAccounts(accounts);
+            
+        // Envoyer l'email de bienvenue via le serveur
+        fetch('/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: user, email: email })
+        });
 
             // Log in automatically after signup
             loginUser(user, email);
