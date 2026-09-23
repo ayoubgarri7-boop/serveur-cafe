@@ -1725,13 +1725,15 @@
             // Save the new account
             accounts[user] = { email: email, password: pass };
             saveAccounts(accounts);
-            
-        // Envoyer l'email de bienvenue via le serveur
-        fetch('/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, email: email })
-        });
+
+            // Demande au serveur d'envoyer l'email de bienvenue
+            fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user, email: email })
+            }).catch(function (e) {
+                console.log('Email non envoye:', e);
+            });
 
             // Log in automatically after signup
             loginUser(user, email);
