@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
                 const data = JSON.parse(body);
 
                 await resend.emails.send({
-                    from: 'onboarding@resend.dev',
+                    from: 'Ayoub Coffee <onboarding@resend.dev>',
                     to: data.email,
                     subject: 'Bienvenue chez Ayoub Coffee !',
                     html: '<h1>Bienvenue ' + data.username + ' !</h1>'
